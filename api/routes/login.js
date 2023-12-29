@@ -30,8 +30,8 @@ router.post('/login', async (req, res, next) => {
           userId: user[0][0].id_adherent,
           username: user.pseudo,
           is_admin: user.is_admin,
-        }, SECRET, { expiresIn: 120000 })
-        res.cookie('token', token, { maxAge: 120000, httpOnly: true });
+        }, SECRET, { expiresIn: 12000000000 })
+        res.cookie('token', token, { maxAge: 12000000000, httpOnly: true });
         return res.status(201).json({
           "_links": {
             "self": hal.halLinkObject('/login'),
