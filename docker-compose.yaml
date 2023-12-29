@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  #La web API (node)
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./api:/usr/src/app:rw
+    container_name: badminton-api
+    ports:
+      - 3030:3000
+    command: "node --watch ./bin/www"
+    depends_on:
+      - db  
+  # La base de données relationnelle (ici SGBD MySQL)
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      - MYSQL_DATABASE=mydb
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./init/:/docker-entrypoint-initdb.d/
+      - ./dbdata:/var/lib/mysql
+    ports:
+      - 3306:3306
+    container_name: badminton-db
+
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - db
+    container_name: badminton-adminer
+    ports:
+      - 8080:8080
