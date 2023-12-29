@@ -33,7 +33,7 @@ Avant de lancer le projet, vous devez vous assurer de posséder :
 - Cloner le dépot et se placer à la racine du projet
 
 ```jsx
-git clone https://github.com/TheVisitor-coding/Eval_API_Badminton.git
+git clone https://github.com/TheVisitor-coding/API_Badminton.git
 ```
 
 ### **Lancer le projet avec Docker-Compose**
